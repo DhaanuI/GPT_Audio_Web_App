@@ -23,7 +23,7 @@ document.getElementById("click_to_record").addEventListener('click', function ()
 
             displayMessage("Me", transcript);
 
-            fetch("http://localhost:8080/process", {
+            fetch("https://lazy-erin-reindeer-tux.cyclic.app/process", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
