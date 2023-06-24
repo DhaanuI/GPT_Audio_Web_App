@@ -3,6 +3,7 @@ const texts = document.querySelector(".texts");
 
 document.getElementById("click_to_record").addEventListener('click', function () {
     var speech = true;
+    this.disabled = true;
     window.SpeechRecognition = window.webkitSpeechRecognition;
 
     const recognition = new SpeechRecognition();
@@ -20,7 +21,6 @@ document.getElementById("click_to_record").addEventListener('click', function ()
 
         silenceTimer = setTimeout(() => {
             recognition.stop();
-
             displayMessage("Me", transcript, true);
 
             fetch("https://lazy-erin-reindeer-tux.cyclic.app/process", {
