@@ -21,7 +21,7 @@ document.getElementById("click_to_record").addEventListener('click', function ()
         silenceTimer = setTimeout(() => {
             recognition.stop();
 
-            displayMessage("Me", transcript);
+            displayMessage("Me", transcript, true);
 
             fetch("https://lazy-erin-reindeer-tux.cyclic.app/process", {
                 method: "POST",
@@ -33,7 +33,7 @@ document.getElementById("click_to_record").addEventListener('click', function ()
                 .then((response) => response.json())
                 .then((data) => {
 
-                    displayMessage("Bot", data.message);
+                    displayMessage("Bot", data.message, false);
 
                     const utterance = new SpeechSynthesisUtterance(data.message);
                     speechSynthesis.speak(utterance);
@@ -44,7 +44,7 @@ document.getElementById("click_to_record").addEventListener('click', function ()
         }, silenceThreshold);
     });
 
-    function displayMessage(sender, message) {
+    function displayMessage(sender, message, val) {
         const textsContainer = document.querySelector('.texts');
         const messageContainer = document.createElement("div");
         messageContainer.classList.add("message-container");
@@ -54,6 +54,13 @@ document.getElementById("click_to_record").addEventListener('click', function ()
         const messageSpan = document.createElement("span");
         messageSpan.classList.add("message");
         messageSpan.innerText = message;
+
+        // to specify color between me and bot
+        if (val) {
+            messageContainer.classList.add("message-me");
+        } else {
+            messageContainer.classList.add("message-bot");
+        }
 
         messageContainer.appendChild(senderSpan);
         messageContainer.appendChild(messageSpan);
