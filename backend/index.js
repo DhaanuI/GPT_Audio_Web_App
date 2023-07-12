@@ -44,8 +44,8 @@ app.post('/process', async (req, res) => {
     try {
         prompt = question;
         const response = await generateCompletion(prompt);
-        console.log(response)
-        res.json({ response });
+        // console.log(response)
+        res.send({ "message": response })
     }
     catch (err) {
         res.send({ "error": err })
