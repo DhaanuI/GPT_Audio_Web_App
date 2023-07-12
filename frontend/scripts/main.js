@@ -28,7 +28,7 @@ document.getElementById("click_to_record").addEventListener('click', function ()
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ text: transcript }),
+                body: JSON.stringify({ question: transcript }),
             })
                 .then((response) => response.json())
                 .then((data) => {
